@@ -1,5 +1,5 @@
-## Put comments here that give an overall description of what your
-## functions do
+## Create a version of a square, invertible matrix that caches its own inverse.
+
 
 ## Create the "cached-inverse matrix" that stores a matrix, and will cache the
 ## inverse if it calculates it.
