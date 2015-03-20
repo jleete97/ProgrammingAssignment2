@@ -38,10 +38,12 @@ cacheSolve <- function(x, ...) {
     inverse <- x$getsolve()
     
     if (is.null(inverse)) {
+        # Inverse not previously calculated, do so now.
         original.matrix <- x$get()
         inverse <- solve(original.matrix, ...)
         x$setsolve(inverse)
     } else {
+        # Inverse previously calculated, just use that.
         message("Using cached data for matrix inverse.")
     }
     
