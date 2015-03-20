@@ -1,8 +1,14 @@
 ## Put comments here that give an overall description of what your
 ## functions do
 
-## Write a short comment describing this function
-
+## Create the "cached-inverse matrix" that stores a matrix, and will cache the
+## inverse if it calculates it.
+## 
+## param:  x - A square, invertible matrix
+## return: A list with get(), set(), getsolve() and setsolve() functions, and
+##         internal state to hold the original matrix and cached inverse (once
+##         calculated).
+## 
 makeCacheMatrix <- function(x = matrix()) {
     s <- NULL
     
@@ -21,8 +27,11 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## Write a short comment describing this function
-
+## Calculate the inverse of a "cached-inverse matrix," as above.
+##
+## param:  x - A "cached-inverse" matrix, from makeCacheMatrix() above.
+## return: The inverse of the matrix.
+## 
 cacheSolve <- function(x, ...) {
     s <- x$getsolve()
     
