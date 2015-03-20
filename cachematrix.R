@@ -8,16 +8,20 @@
 ##         internal state to hold the original matrix and cached inverse (once
 ##         calculated).
 makeCacheMatrix <- function(x = matrix()) {
+    # Initialize cached inverse
     s <- NULL
     
+    # Define accessor methods
     set <- function(y) {
+        # Reset internal state: store matrix, clear cached inverse
         x <<- y
-        m <<- NULL
+        s <<- NULL
     }
     get <- function() x
-    setsolve <- function(solve) s <<- solve
+    setsolve <- function(solved) s <<- solved
     getsolve <- function() s
     
+    # Return methods as list (with internal state)
     list(set = set,
          get = get,
          setsolve = setsolve,
@@ -30,15 +34,15 @@ makeCacheMatrix <- function(x = matrix()) {
 ## param:  x - A "cached-inverse" matrix, from makeCacheMatrix() above.
 ## return: The inverse of the matrix.
 cacheSolve <- function(x, ...) {
-    s <- x$getsolve()
+    inverse <- x$getsolve()
     
-    if (is.null(s)) {
-        m <- x$get()
-        s <- solve(m, ...)
-        x$setsolve(s)
+    if (is.null(inverse)) {
+        original.matrix <- x$get()
+        inverse <- solve(original.matrix, ...)
+        x$setsolve(inverse)
     } else {
         message("Using cached data for matrix inverse.")
     }
     
-    s
+    inverse
 }
