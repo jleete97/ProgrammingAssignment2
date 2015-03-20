@@ -39,6 +39,8 @@ cacheSolve <- function(x, ...) {
         m <- x$get()
         s <- solve(m, ...)
         x$setsolve(s)
+    } else {
+        message("Using cached data for matrix inverse.")
     }
     
     s
