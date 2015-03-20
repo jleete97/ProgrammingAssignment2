@@ -1,4 +1,6 @@
+## ----------------------------------------------------------------------------
 ## Create a version of a square, invertible matrix that caches its own inverse.
+## ----------------------------------------------------------------------------
 
 ## Create the "cached-inverse matrix" that stores a matrix, and will cache the
 ## inverse if it calculates it.
