@@ -3,19 +3,19 @@
 ## ----------------------------------------------------------------------------
 
 ## Create the "cached-inverse matrix" that stores a matrix, and will cache the
-## inverse if it calculates it.
+## inverse if it calculates it (see below).
 ## 
-## param:  x - A square, invertible matrix
+## param:  x - A square, invertible matrix.
 ## return: A list with get(), set(), getsolve() and setsolve() functions, and
 ##         internal state to hold the original matrix and cached inverse (once
 ##         calculated).
 makeCacheMatrix <- function(x = matrix()) {
-    # Initialize cached inverse
+    # Initialize cached inverse (not yet calculated).
     s <- NULL
     
-    # Define accessor methods
+    # Define accessor methods.
     set <- function(y) {
-        # Reset internal state: store matrix, clear cached inverse
+        # Reset internal state: store matrix, clear cached inverse.
         x <<- y
         s <<- NULL
     }
@@ -23,7 +23,7 @@ makeCacheMatrix <- function(x = matrix()) {
     setsolve <- function(solved) s <<- solved
     getsolve <- function() s
     
-    # Return methods as list (with internal state)
+    # Return methods as list (with internal state).
     list(set = set,
          get = get,
          setsolve = setsolve,
@@ -32,8 +32,8 @@ makeCacheMatrix <- function(x = matrix()) {
 
 ## Calculate the inverse of a "cached-inverse matrix," as above.
 ##
-## param:  x - A "cached-inverse" matrix, from makeCacheMatrix() above.
-## return: The inverse of the matrix.
+## param:  x - A "cached-inverse matrix," from makeCacheMatrix() above.
+## return: The inverse of the original matrix.
 cacheSolve <- function(x, ...) {
     inverse <- x$getsolve()
     
@@ -43,7 +43,7 @@ cacheSolve <- function(x, ...) {
         inverse <- solve(original.matrix, ...)
         x$setsolve(inverse)
     } else {
-        # Inverse previously calculated, just use that.
+        # Inverse previously calculated, skip calculation.
         message("Using cached data for matrix inverse.")
     }
     
