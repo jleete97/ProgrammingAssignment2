@@ -31,7 +31,9 @@ makeCacheMatrix <- function(x = matrix()) {
          getsolve = getsolve)
 }
 
-## Calculate the inverse of a "cached-inverse matrix," as above.
+## Determine the inverse of a "cached-inverse matrix," by either calculating
+## and caching it (the first time) or fetching the cached value (second time
+## and thereafter).
 ##
 ## param:  x - A "cached-inverse matrix," from makeCacheMatrix() above.
 ## return: The inverse of the original matrix.
